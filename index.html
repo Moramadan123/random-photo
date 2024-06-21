@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container" id="elzero-app">
+      <img v-if="selected" :src="selected" alt="" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script>
+      var photos = [
+        " https://place-hold.it/400/F00/FFF",
+        "https://place-hold.it/400/00F/FFF",
+        " https://place-hold.it/400/000/FFF",
+        " https://place-hold.it/400/AAA/FFF",
+      ];
+      var app = new Vue({
+        el: "#elzero-app",
+        data: {
+          photos: photos,
+          selected: null,
+        },
+        methods: {
+          randomphoto(imgs) {
+            return imgs[Math.floor(Math.random() * photos.length)];
+          },
+        },
+        created() {
+          this.selected = this.randomphoto(this.photos);
+        },
+      });
+    </script>
+  </body>
+</html>
+<style>
+  body {
+    font-family: "open Sans";
+    font-size: 19px;
+  }
+  .container {
+    margin: 20px auto;
+    width: 1200px;
+  }
+
+  .container .tabs {
+    margin-bottom: 0;
+  }
+  .container .tabs li {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #eee;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  .container .tabs li.active {
+    opacity: 1;
+  }
+  .container .tabs-content {
+    background-color: #eee;
+    margin: 0 auto;
+    padding: 20px;
+  }
+</style>
